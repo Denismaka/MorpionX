@@ -14,8 +14,140 @@
                 <div class="game-controls">
                     <button id="restartBtn" class="btn-restart">🔄 Nouvelle partie</button>
                     <button id="aiModeBtn" class="btn-mode">🤖 Mode Solo</button>
+                    <button id="onlineModeBtn" class="btn-online-mode">🌐 En ligne</button>
+                    <button id="settingsBtn" class="btn-settings">⚙️ Paramètres</button>
+                    <button id="statsBtn" class="btn-stats">📊 Statistiques</button>
+                    <button id="historyBtn" class="btn-history">📜 Historique</button>
                 </div>
             </header>
+
+            <!-- Panel des paramètres -->
+            <div id="settingsPanel" class="panel settings-panel hidden">
+                <h3>⚙️ Paramètres</h3>
+                <div class="settings-group">
+                    <label>Taille de la grille:</label>
+                    <select id="gridSizeSelect">
+                        <option value="3">3x3 (Classique)</option>
+                        <option value="4">4x4</option>
+                        <option value="5">5x5</option>
+                    </select>
+                </div>
+                <div class="settings-group">
+                    <label>Difficulté IA:</label>
+                    <select id="difficultySelect">
+                        <option value="easy">Facile</option>
+                        <option value="medium" selected>Moyen</option>
+                        <option value="hard">Difficile</option>
+                    </select>
+                </div>
+                <div class="settings-group">
+                    <label>Thème:</label>
+                    <select id="themeSelect">
+                        <option value="default" selected>Défaut</option>
+                        <option value="dark">Sombre</option>
+                        <option value="light">Clair</option>
+                        <option value="ocean">Océan</option>
+                        <option value="forest">Forêt</option>
+                        <option value="sunset">Coucher de soleil</option>
+                    </select>
+                </div>
+                <div class="settings-group">
+                    <label>
+                        <input type="checkbox" id="soundEnabled" checked>
+                        Activer les sons
+                    </label>
+                </div>
+                <div class="settings-group">
+                    <label>
+                        <input type="checkbox" id="tournamentMode">
+                        Mode Tournoi
+                    </label>
+                </div>
+                <button id="closeSettings" class="btn-close">Fermer</button>
+            </div>
+
+            <!-- Panel des statistiques -->
+            <div id="statsPanel" class="panel stats-panel hidden">
+                <h3>📊 Statistiques détaillées</h3>
+                <div class="stats-content">
+                    <div class="stat-item">
+                        <span class="stat-label">Parties jouées:</span>
+                        <span class="stat-value" id="totalGames">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Victoires X:</span>
+                        <span class="stat-value" id="winsX">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Victoires O:</span>
+                        <span class="stat-value" id="winsO">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Matchs nuls:</span>
+                        <span class="stat-value" id="draws">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Taux de victoire X:</span>
+                        <span class="stat-value" id="winRateX">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Taux de victoire O:</span>
+                        <span class="stat-value" id="winRateO">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Série de victoires:</span>
+                        <span class="stat-value" id="winStreak">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Temps de jeu total:</span>
+                        <span class="stat-value" id="totalPlayTime">0 min</span>
+                    </div>
+                </div>
+                <button id="closeStats" class="btn-close">Fermer</button>
+                <button id="resetStats" class="btn-reset">Réinitialiser les stats</button>
+            </div>
+
+            <!-- Panel de l'historique -->
+            <div id="historyPanel" class="panel history-panel hidden">
+                <h3>📜 Historique des parties</h3>
+                <div id="historyList" class="history-list"></div>
+                <button id="closeHistory" class="btn-close">Fermer</button>
+                <button id="clearHistory" class="btn-reset">Effacer l'historique</button>
+            </div>
+
+            <!-- Panel du mode tournoi -->
+            <div id="tournamentPanel" class="panel tournament-panel hidden">
+                <h3>🏆 Mode Tournoi</h3>
+                <div class="tournament-info">
+                    <p>Parties jouées: <span id="tournamentGames">0</span></p>
+                    <p>Parties gagnées X: <span id="tournamentWinsX">0</span></p>
+                    <p>Parties gagnées O: <span id="tournamentWinsO">0</span></p>
+                    <p>Score du tournoi: <span id="tournamentScore">0 - 0</span></p>
+                </div>
+                <button id="closeTournament" class="btn-close">Fermer</button>
+                <button id="resetTournament" class="btn-reset">Réinitialiser le tournoi</button>
+            </div>
+
+            <!-- Mode multijoueur en ligne -->
+            <div id="onlinePanel" class="panel online-panel hidden">
+                <h3>🌐 Mode Multijoueur en ligne</h3>
+                <div class="online-controls">
+                    <button id="createRoomBtn" class="btn-online">Créer une salle</button>
+                    <button id="joinRoomBtn" class="btn-online">Rejoindre une salle</button>
+                    <input type="text" id="roomIdInput" placeholder="ID de la salle" class="room-input">
+                    <div id="onlineStatus" class="online-status">Déconnecté</div>
+                    <button id="disconnectBtn" class="btn-reset" style="display: none;">Se déconnecter</button>
+                </div>
+                <div class="online-info">
+                    <p><strong>Instructions:</strong></p>
+                    <ul>
+                        <li>Pour créer une salle: Cliquez sur "Créer une salle" et partagez l'ID avec votre adversaire</li>
+                        <li>Pour rejoindre: Entrez l'ID de la salle et cliquez sur "Rejoindre une salle"</li>
+                        <li>Le serveur doit être en cours d'exécution (node server.js)</li>
+                    </ul>
+                </div>
+                <button id="closeOnline" class="btn-close">Fermer</button>
+            </div>
 
             <div class="scoreboard">
                 <div class="score score-x">
@@ -32,17 +164,7 @@
                 <p class="resultat"></p>
             </div>
 
-            <div class="container">
-                <div class="case" data-index="0"></div>
-                <div class="case" data-index="1"></div>
-                <div class="case" data-index="2"></div>
-                <div class="case" data-index="3"></div>
-                <div class="case" data-index="4"></div>
-                <div class="case" data-index="5"></div>
-                <div class="case" data-index="6"></div>
-                <div class="case" data-index="7"></div>
-                <div class="case" data-index="8"></div>
-            </div>
+            <div id="gameContainer" class="container"></div>
         </div>
 
         <script src="app.js"></script>

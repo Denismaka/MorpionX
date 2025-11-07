@@ -30,6 +30,8 @@ Un jeu de Morpion (Tic Tac Toe) moderne et interactif développé en HTML, CSS e
 
 ## 🚀 Installation
 
+### Installation simple (mode solo/local)
+
 1. Clonez le dépôt :
 ```bash
 git clone https://github.com/Denismaka/MorpionX.git
@@ -51,6 +53,28 @@ php -S localhost:8000
 
 Puis accédez à `http://localhost:8000` dans votre navigateur.
 
+### Installation complète (avec mode multijoueur en ligne)
+
+1. Clonez le dépôt :
+```bash
+git clone https://github.com/Denismaka/MorpionX.git
+cd MorpionX
+```
+
+2. Installez les dépendances :
+```bash
+npm install
+```
+
+3. Lancez le serveur :
+```bash
+npm start
+```
+
+4. Accédez à `http://localhost:3000` dans votre navigateur
+
+Le serveur sera disponible sur le port 3000 (ou le port spécifié dans la variable d'environnement PORT).
+
 ## 📖 Utilisation
 
 ### Mode Multijoueur
@@ -70,9 +94,12 @@ Puis accédez à `http://localhost:8000` dans votre navigateur.
 ## 🛠️ Technologies utilisées
 
 - **HTML5** : Structure du jeu
-- **CSS3** : Styling moderne avec animations et effets visuels
+- **CSS3** : Styling moderne avec animations, effets visuels et thèmes personnalisables
 - **JavaScript (ES6+)** : Logique du jeu et algorithme IA
-- **LocalStorage** : Sauvegarde des scores
+- **LocalStorage** : Sauvegarde des scores, statistiques et historique
+- **Web Audio API** : Sons et effets sonores
+- **Socket.IO** : Mode multijoueur en ligne en temps réel
+- **Node.js + Express** : Serveur pour le mode multijoueur en ligne
 
 ## 🎯 Structure du projet
 
@@ -80,8 +107,11 @@ Puis accédez à `http://localhost:8000` dans votre navigateur.
 MorpionX/
 │
 ├── index.html      # Structure HTML du jeu
-├── style.css       # Styles et animations
-├── app.js          # Logique du jeu et IA
+├── style.css       # Styles, animations et thèmes
+├── app.js          # Logique du jeu, IA et toutes les fonctionnalités
+├── server.js       # Serveur WebSocket pour le mode multijoueur en ligne
+├── package.json    # Dépendances Node.js
+├── .gitignore      # Fichiers à ignorer par Git
 └── README.md       # Documentation
 ```
 
@@ -108,16 +138,61 @@ Vous pouvez facilement personnaliser :
 - ✅ Safari (dernières versions)
 - ✅ Navigateurs mobiles (iOS/Android)
 
+## ✨ Nouvelles fonctionnalités (v2.0)
+
+Toutes les améliorations futures ont été implémentées ! 🎉
+
+### 🎮 Niveaux de difficulté IA
+- **Facile** : L'IA fait parfois des erreurs stratégiques
+- **Moyen** : L'IA utilise une stratégie équilibrée (par défaut)
+- **Difficile** : L'IA utilise l'algorithme Minimax pour des coups optimaux
+
+### 🌐 Mode multijoueur en ligne
+- Jouez avec des amis en temps réel via WebSockets
+- Créez ou rejoignez des salles de jeu
+- Synchronisation en temps réel des coups
+- **Note** : Nécessite le serveur Node.js en cours d'exécution
+
+### 🔊 Sons et effets sonores
+- Sons pour chaque coup joué
+- Musique de victoire
+- Son pour les matchs nuls
+- Activation/désactivation dans les paramètres
+
+### 🎨 Thèmes personnalisables
+- **Défaut** : Dégradé violet classique
+- **Sombre** : Thème sombre élégant
+- **Clair** : Thème clair et lumineux
+- **Océan** : Tons bleus et verts
+- **Forêt** : Tons verts naturels
+- **Coucher de soleil** : Tons roses et oranges
+
+### 📜 Historique des parties
+- Conserve les 50 dernières parties
+- Affiche le gagnant, la taille de grille et la durée
+- Filtrage par résultat (victoire X, O ou match nul)
+
+### 📊 Statistiques détaillées
+- Nombre total de parties jouées
+- Victoires par joueur (X et O)
+- Matchs nuls
+- Taux de victoire pour chaque joueur
+- Série de victoires la plus longue
+- Temps de jeu total
+
+### 🎯 Grilles alternatives
+- **3x3** : Grille classique (par défaut)
+- **4x4** : Grille moyenne pour plus de stratégie
+- **5x5** : Grande grille pour des parties plus longues
+
+### 🏆 Mode tournoi
+- Suivez les scores sur plusieurs parties
+- Statistiques de tournoi séparées
+- Réinitialisation facile pour recommencer
+
 ## 🔮 Améliorations futures
 
-- [ ] Niveaux de difficulté pour l'IA (facile/moyen/difficile)
-- [ ] Mode multijoueur en ligne (WebSockets)
-- [ ] Sons et effets sonores
-- [ ] Thèmes personnalisables
-- [ ] Historique des parties
-- [ ] Statistiques détaillées
-- [ ] Grilles alternatives (4x4, 5x5)
-- [ ] Mode tournoi
+Toutes les fonctionnalités prévues ont été implémentées ! 🎊
 
 ## 📝 Licence
 
